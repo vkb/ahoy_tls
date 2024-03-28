@@ -1,0 +1,70 @@
+//-----------------------------------------------------------------------------
+// 2024 Ahoy, https://www.mikrocontroller.net/topic/525778
+// Creative Commons - http://creativecommons.org/licenses/by-nc-sa/4.0/deed
+//-----------------------------------------------------------------------------
+
+#ifndef __CONFIG_TLS_H__
+#define __CONFIG_TLS_H__
+
+#define MQTT_TLS
+
+#if defined(ESP8266) && defined(MQTT_TLS)
+
+const char server_fingerprint[] PROGMEM = "4C 73 EA 85 62 20 41 E3 7B 74 16 E9 99 0D 48 25 A3 1F 54 60";
+
+const char client_cert[] PROGMEM = R"EOF(
+-----BEGIN CERTIFICATE-----
+MIIDEjCCAfoCFHNRSPRBDszkssxWEByPo9cCqyLOMA0GCSqGSIb3DQEBCwUAMEUx
+CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
+cm5ldCBXaWRnaXRzIFB0eSBMdGQwHhcNMjQwMzI4MjAwMTU0WhcNMjUwMzI4MjAw
+MTU0WjBGMQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEQMA4GA1UE
+CgwHYmt3X211YzEQMA4GA1UEAwwHYmt3LW11YzCCASIwDQYJKoZIhvcNAQEBBQAD
+ggEPADCCAQoCggEBAMpaxe/ZfcO81KAGSr35O5OuHdX/wp/0Ue/Pq4mmzDX2yqPl
+mXLYUOXHkzsDjzIReSBy0Ga2WUlJtO5oLEAdX/1dGUVIuo16hrKNzR1PITE3RStO
+MPc1CbGfGzH/PPUamLvdPJNApxgXZkr2i9DlAGt7QlEMr8D7DMu4DegZlGqZ70uG
+SVMEut6iWfVU56OgEO9MpKkkf0LdaotE9oj6I8lXfNbAVjigkqN9dYmPtsQrp/l3
+nDWf4GAuNejiodO5hNoun3eRRAx38rrev3o9neICSVxmKcsOy+CwJoHqg8o0I+L2
+JRKiYi/Gi5YmKOScSQ+fPXrrpqA3mth3jjeF+AMCAwEAATANBgkqhkiG9w0BAQsF
+AAOCAQEAFkKk2iXWHcizNoBrxK1tUsZvFQZDwNT28PVeoXu7dofrNM6X7g9iY4No
+f4frLB8kYwuXbzZUYCpsy7wY4OyEM5kHg8uP3+7dRc7Q3sBq8URkO1U1MKMvZMpM
+qtnE/E+V98sNmNRPnLjPcwv7dWaTataG7dTTm9uHF61beG+wxNZRgP7Dgp+D1Ot+
+jd0HPz6G/+AWgV7savdPEBsTphZKerRYMucmd8jifTc/UpFFuJYYhHrsynCNbhWY
+SPoxFgklUNSdDsHTwQnu4nxjsJpRnieKuaKLWIUh6ydcf1GMmaYoYAvi8qPl9jja
+k0yMTEhiq6BDWooXJk0gxGNsYaf/Lw==
+-----END CERTIFICATE-----
+)EOF";
+
+const char client_private_key[] PROGMEM = R"KEY(
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKWsXv2X3DvNSg
+Bkq9+TuTrh3V/8Kf9FHvz6uJpsw19sqj5Zly2FDlx5M7A48yEXkgctBmtllJSbTu
+aCxAHV/9XRlFSLqNeoayjc0dTyExN0UrTjD3NQmxnxsx/zz1Gpi73TyTQKcYF2ZK
+9ovQ5QBre0JRDK/A+wzLuA3oGZRqme9LhklTBLreoln1VOejoBDvTKSpJH9C3WqL
+RPaI+iPJV3zWwFY4oJKjfXWJj7bEK6f5d5w1n+BgLjXo4qHTuYTaLp93kUQMd/K6
+3r96PZ3iAklcZinLDsvgsCaB6oPKNCPi9iUSomIvxouWJijknEkPnz1666agN5rY
+d443hfgDAgMBAAECggEAPLH8hARXAkKd/j/U5GWg9pt3zIwSCxtkBkviln/G6frT
+7lQ8ciOrJDj4Eu/u4CQ4kkCN/Pj+EAsBL69kcni9JYhqv4rglfYl9+Grn/pvqMz8
+vNAPxN6OQU5JgHYgCR7IqDTkagCu/f1qy9pmtqoxtYt7qUbmYrqKrIJQ/YjKqSxp
+GhU2uC/FMLFEVGAy33xXOx0HEHZI4S6nF0lprbUUbA7n2Sbso4ka6qfgw6YYtYpn
+IqPPO1O3KJhrudnh0/HML73mKjONc7EIydHOlwJ70FAPPsZehzw4PCyMFdhQqtTj
+1CxOugzJcyuUd/y60nSbmdoVXRfE978BlQyy8OLXvQKBgQD1eiG4fNOe1DfcNnqa
+7/ktxaEFxVY0T/U/+AbRO8zc6lSgzRL68c6Ua/g/I3BpbiheaQBkOGzrXcfTzkaR
+GLa8n/UQCbF/9/IY1LpRqRuEKCFu+bZfl8WgiDmlgJmdTTSoElo2dUc5WSLhsAjj
+TCTkIIPiIgSMFU3/OMXRUQuxDQKBgQDTB2orEdFfVm6RLjZS06I3PW+buAmVBjM4
+jmDslAF1jo6ksHCdB8d4lz4CmyQLWLhdF37fFEHKXIf9z2TObRKueVH8dOQCaw3y
+0F3XlfSlXI6ZUxwSgmC9ynF17IhW1FYLqpSCoTDyBm1IxAzQMM3XIHsyaeO5MgLf
+8scJg3xpTwKBgQCE5BxTOsh5qJuhDKEtNZKpE99LN3ymj07O1aAjL4OFaRptfvey
+gKt8MENRMwdNHESgb6m1l9JnTPq8EGSlckKjNNk/WHAOPhWDGc7QHIN39R28bVUs
+xQZJFNZYYZlHzh8eiejqqGzpf/bhRSJaosMp+OxMxGu/xlzWOU7mNUDmFQKBgD3f
+S6qLE9cfEVXxta29LS+DDMkcQXr3EWeAnzxd/LuJ65qvvKTd1gcuWNkMwZmuDogE
+zob7enqpfJnXB9haNIMBQR+C6iMnXjSWER2Xct5U795WdsGahmC/DVsk2aiToxLS
+la5jMmWTqtEN4i/cT03G0Tgrwb/XwO4GUYMhkQWTAoGAYfR9da5QtLULDXkCVuox
+wZXbDtjWOhMTACsu8aB5qj7wHyDDTf4KtTeWzTEf/FxKh/tUHo9vl4aghqUx5I2b
+RzEGCjxQrIf2beFxafq95T1EvDEBnZ8IQGygObFKgpl4L/TzV55OOZUBYm+y89e6
+na9ZFGQi8ByXXEg503tCuH8=
+-----END PRIVATE KEY-----
+)KEY";
+
+#endif
+
+#endif /*__CONFIG_TLS_H__*/

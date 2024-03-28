@@ -18,6 +18,7 @@
 #include <array>
 #include "../utils/dbg.h"
 #include "../config/config.h"
+#include "../config/config_tls.h"
 #include <espMqttClient.h>
 #include <ArduinoJson.h>
 #include "../defines.h"
@@ -34,6 +35,8 @@ typedef struct {
     uint8_t sub;
     uint8_t foundIvCnt;
 } discovery_t;
+
+
 
 template<class HMSYSTEM>
 class PubMqtt {
@@ -92,6 +95,17 @@ class PubMqtt {
             mClient.onConnect(std::bind(&PubMqtt::onConnect, this, std::placeholders::_1));
             mClient.onDisconnect(std::bind(&PubMqtt::onDisconnect, this, std::placeholders::_1));
             mClient.onMessage(std::bind(&PubMqtt::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6));
+
+            #if defined(ESP8266) && defined(MQTT_TLS)
+
+            X509List certList(client_cert);
+            PrivateKey privKey(client_private_key);
+
+            mClient.setInsecure(); // don't verify any X509 certificates (connect to any server)
+            //mClient.setFingerprint(server_fingerprint);
+            mClient.setClientRSACert(&certList, &privKey);
+
+            #endif
         }
 
         void loop() {
@@ -602,7 +616,12 @@ class PubMqtt {
             mLastAnyAvail = anyAvail;
         }
 
+        #if defined(ESP8266) && defined(MQTT_TLS)
+        espMqttClientSecure mClient;
+        #else
         espMqttClient mClient;
+        #endif
+
         cfgMqtt_t *mCfgMqtt = nullptr;
         #if defined(ESP8266)
         WiFiEventHandler mHWifiCon, mHWifiDiscon;
